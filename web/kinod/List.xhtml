@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListKinodTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListKinodEmpty}" rendered="#{kinodController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{kinodController.items.rowCount > 0}">
+                    <h:outputText value="#{kinodController.pagination.pageFirstItem + 1}..#{kinodController.pagination.pageLastItem + 1}/#{kinodController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{kinodController.previous}" value="#{bundle.Previous} #{kinodController.pagination.pageSize}" rendered="#{kinodController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{kinodController.next}" value="#{bundle.Next} #{kinodController.pagination.pageSize}" rendered="#{kinodController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{kinodController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListKinodTitle_nimi}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nimi}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListKinodTitle_asukoht}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.asukoht}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListKinodTitle_hinne}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.hinne}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListKinodTitle_hinnanguid}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.hinnanguid}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{kinodController.prepareView}" value="#{bundle.ListKinodViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{kinodController.prepareEdit}" value="#{bundle.ListKinodEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{kinodController.destroy}" value="#{bundle.ListKinodDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{kinodController.prepareCreate}" value="#{bundle.ListKinodCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListKinodIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditSöögikohadTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditSöögikohadLabel_nimi}" for="nimi" />
+                    <h:inputText id="nimi" value="#{söögikohadController.selected.nimi}" title="#{bundle.EditSöögikohadTitle_nimi}" required="true" requiredMessage="#{bundle.EditSöögikohadRequiredMessage_nimi}"/>
+                    <h:outputLabel value="#{bundle.EditSöögikohadLabel_asukoht}" for="asukoht" />
+                    <h:inputText id="asukoht" value="#{söögikohadController.selected.asukoht}" title="#{bundle.EditSöögikohadTitle_asukoht}" />
+                    <h:outputLabel value="#{bundle.EditSöögikohadLabel_hinne}" for="hinne" />
+                    <h:inputText id="hinne" value="#{söögikohadController.selected.hinne}" title="#{bundle.EditSöögikohadTitle_hinne}" />
+                    <h:outputLabel value="#{bundle.EditSöögikohadLabel_hinnanguid}" for="hinnanguid" />
+                    <h:inputText id="hinnanguid" value="#{söögikohadController.selected.hinnanguid}" title="#{bundle.EditSöögikohadTitle_hinnanguid}" />
+                </h:panelGrid>
+                <h:commandLink action="#{söögikohadController.update}" value="#{bundle.EditSöögikohadSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditSöögikohadViewLink}"/>
+                <br />
+                <h:commandLink action="#{söögikohadController.prepareList}" value="#{bundle.EditSöögikohadShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditSöögikohadIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

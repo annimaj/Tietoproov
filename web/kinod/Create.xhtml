@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateKinodTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateKinodLabel_nimi}" for="nimi" />
+                    <h:inputText id="nimi" value="#{kinodController.selected.nimi}" title="#{bundle.CreateKinodTitle_nimi}" required="true" requiredMessage="#{bundle.CreateKinodRequiredMessage_nimi}"/>
+                    <h:outputLabel value="#{bundle.CreateKinodLabel_asukoht}" for="asukoht" />
+                    <h:inputText id="asukoht" value="#{kinodController.selected.asukoht}" title="#{bundle.CreateKinodTitle_asukoht}" />
+                    <h:outputLabel value="#{bundle.CreateKinodLabel_hinne}" for="hinne" />
+                    <h:inputText id="hinne" value="#{kinodController.selected.hinne}" title="#{bundle.CreateKinodTitle_hinne}" />
+                    <h:outputLabel value="#{bundle.CreateKinodLabel_hinnanguid}" for="hinnanguid" />
+                    <h:inputText id="hinnanguid" value="#{kinodController.selected.hinnanguid}" title="#{bundle.CreateKinodTitle_hinnanguid}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{kinodController.create}" value="#{bundle.CreateKinodSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{kinodController.prepareList}" value="#{bundle.CreateKinodShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateKinodIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
